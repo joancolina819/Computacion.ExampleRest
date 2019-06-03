@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Entrega Medicamento</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Entregar Medicamento</h1>
+		<form action="#" th:action="@{/entregarMedicamento}" th:object="${suministro}"
+			method="post">
+			
+				<label for="paciente">Paciente</label> <input
+					type="text" th:field="${suministro.patient.idDocument}" 
+					id="paciente"> <span
+					th:if="${#fields.hasErrors('patient')}" th:errors="*{patient}"
+				></span>
+					
+			
+				<label for="id">Medicina</label> <select 
+					th:errorclass="is-invalid" th:field="*{medicine}">
+					<option th:each="medicamento : ${medicamentos}" th:value="${medicamento.id}"
+						th:text="${medicamento.id} + ' - ' +  ${medicamento.name}"></option>
+				</select>
+				<div 
+					th:if="${#fields.hasErrors('medicine')}" th:errors="*{medicine}">Medicina
+					invalida</div>
+			
+		
+				<label for="patologia" >Patologia</label> <input
+					type="text" th:field="*{pathology}" 
+					id="patologia" > <span
+					th:if="${#fields.hasErrors('pathology')}" th:errors="*{pathology}"
+					></span>
+
+			
+				<label for="cantidad" >Cantidad</label> <input
+					type="number" th:field="*{quantity}" 
+					id="cantidad" > <span
+					th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"
+					></span>
+				<label for="date" >Fecha</label>
+					<input type="date" th:field="*{date}"
+						id="date" > <div
+						th:if="${#fields.hasErrors('date')}"
+						th:errors="*{date}" ></div>	
+
+			
+			
+		
+				<label for="observaciones">Observaciones</label> <textarea
+					th:field="*{observation}"  
+					id="observaciones" ></textarea> <span
+					th:if="${#fields.hasErrors('observation')}" th:errors="*{observation}"
+					></span>
+			
+
+			<a href="#" th:href="@{/}"> Volver al menu </a>
+			<button type="submit">Realizar
+				Entrega</button>
+		</form>
+	</div>
+</body>
+</html>

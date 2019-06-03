@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Menu de usuarios</title>
+</head>
+
+<body>
+			<h3>Menu de citas</h3>
+			<a href="#" th:href="@{/entregarMedicamento}" > Entregar medicamento
+			<br>
+			<a href="#" th:href="@{/listarEntregaMedicamentos}" > Consulta medicamentos entregados </a>
+			<br>
+			<a href="#" th:href="@{/registrarAtencion}" > Registrar atencion de paciente </a>
+			<br>
+			<a href="#" th:href="@{/listarAtenciones}" > Consulta de atenciones a pacientes </a>
+			<br>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Cerrar Sesión" />
+			</form>	
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Gestion Inventarios</title>
+</head>
+<body>
+		<h1>Registro Atencion de Urgencia</h1>
+		<form action="#" th:action="@{/gestionInventariosMedicamentos}" th:object="${inventarioMedicamento}"method="post">
+			
+			
+				<label for="quantityAvailable" >QuantityAvailable</label> 
+				<input type="text" th:field="${inventarioMedicamento.quantityAvailable}" id="quantityAvailable" > 
+			
+			
+				<label for="location">Location</label>
+				<input type="text" th:field="${inventarioMedicamento.location}" id="location"> 
+				
+				<label for="expirationDate">Fecha</label>
+				<input type="date" th:field="*{expirationDate}" id="date" value= "2018-09-12"> 
+				
+				<label for="id">Medicina</label> <select 
+					th:errorclass="is-invalid" th:field="*{medicine}">
+					<option th:each="medicamento : ${medicamentos}" th:value="${medicamento.id}"
+						th:text="${medicamento.id} + ' - ' +  ${medicamento.name}"></option>
+				</select>
+				<div 
+					th:if="${#fields.hasErrors('medicine')}" th:errors="*{medicine}">Medicina
+					invalida</div>
+			
+			<a href="#" th:href="@{/}"> Volver al menu </a>	
+			<button type="submit">Registrar Atencion</button>
+		</form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Consulta de medicamentos</title>
+</head>
+<body>
+	
+				<h1>Consultar de medicamentos dispensados a paciente</h1>
+			
+				<form action="#" th:action="@{/listarEntregaMedicamentos}" th:object="${commandDate}"
+					method="post">
+					<label for="date" >Fecha de dispencion del medicamenteo</label>
+							<input type="date" th:field="*{date}" 
+								id="date" > <div
+								th:if="${#fields.hasErrors('date')}"
+								th:errors="*{date}" class="text-danger"></div>
+					<button type="submit" >Buscar dipensaciones</button>
+				</form>
+
+			
+				<table width="100%" >
+					<thead>
+						<tr>
+							<th>Medicamento</th>
+							<th>Observaciones</th>
+							<th>Cantidad medicamento</th>
+							<th>Patologia</th>
+							<th>Paciente</th>
+							<th>Fecha</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${suministros.empty}">
+							<td colspan="2">No se ha encontrados medicamentos dispensados</td>
+						</tr>
+						<tr th:each="suministro : ${suministros}">
+							<td><span th:text="${suministro.medicine.name}">Medicamento </span></td>
+							<td><span th:text="${suministro.observation}"> Patologia </span></td>
+							<td><span th:text="${suministro.quantity}"> Cantidad medicamento</span></td>
+							<td><span th:text="${suministro.pathology}"> Patologia </span></td>
+							<td><span th:text="${suministro.patient.name}">Paciente</span></td>
+							<td><span th:text="${#dates.format(suministro.date, 'dd-MM-yyyy')}">Fecha </span></td>
+						</tr>
+					</tbody>
+				</table>
+			
+					<a href="#" th:href="@{/}"> Volver al menu </a>
+
+</body>
+</html>

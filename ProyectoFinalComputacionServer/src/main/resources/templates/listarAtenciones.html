@@ -1,0 +1,54 @@
+<html 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>atenciones</title>
+</head>
+<body>
+				<h1>Consulta de atenciones realizadas a pacientes</h1>
+		
+				<form action="#" th:action="@{/listarAtenciones}" th:object="${commandDate}"
+					method="post">
+					<label for="date">Fecha de realizacion de la atencion</label>
+							<input type="date" th:field="*{date}" 
+								id="date" > <div
+								th:if="${#fields.hasErrors('date')}"
+								th:errors="*{date}" class="text-danger"></div>
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</form>
+
+			
+				<table width="100%" >
+					<thead>
+						<tr>
+							<th>Paciente</th>
+							<th>Observaciones</th>
+							<th>Descripcion general</th>
+							<th>Procedimiento realizado</th>
+							<th>Lugar de remision</th>
+							<th>Fue remitido</th>
+							<th>Fecha de la atencion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${atenciones.empty}">
+							<td colspan="2">No se ha enconrtado atenciones </td>
+						</tr>
+						<tr th:each="atencion : ${atenciones}">
+							<td><span th:text="${atencion.patient.name}">Paciente </span></td>
+							<td><span th:text="${atencion.observations}"> Observaciones </span></td>
+							<td><span th:text="${atencion.generalDescription}"> Descripcion general </span></td>
+							<td><span th:text="${atencion.procedurePerformed}"> Procedimiento realizado </span></td>
+							<td><span th:text="${atencion.placeOfReferral}"> Lugar de remision </span></td>
+							<td><span th:text="${atencion.forwarded}"> Fue remitido </span></td>
+							<td><span th:text="${#dates.format(atencion.date, 'dd-MM-yyyy')}">Fecha de la atencion </span></td>
+						</tr>
+					</tbody>
+				</table>
+		
+					<a href="#" th:href="@{/}"> Volver al menu </a>
+
+				
+</body>
+</html>

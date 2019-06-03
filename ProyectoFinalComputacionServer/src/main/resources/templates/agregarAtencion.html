@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registro Atencion de Urgencia</title>
+</head>
+<body>
+		<h1>Registro Atencion de Urgencia</h1>
+		<form action="#" th:action="@{/registrarAtencion}" th:object="${atencionUrgencias}"method="post">
+			
+			
+				<label for="paciente" >Paciente</label> 
+				<input type="text" th:field="${atencionUrgencias.patient.idDocument}" id="paciente" > 
+			
+			
+				<label for="date">Fecha</label>
+				<input type="date" th:field="*{date}" id="date"> 
+				
+			
+				<label for="descripcionGeneral" >Descripcion General</label> 
+				<textarea th:field="*{generalDescription}" id="descripcionGeneral"></textarea> 
+				
+				<label for="id">Fue remitido</label> 
+				<select th:field="*{forwarded}">
+					<option th:value="Y" th:text="Si"></option>
+					<option th:value="N" th:text="No"></option>
+				</select>
+
+				<label for="procedimientoRealizado">Procedimiento realizado</label> 
+				<textarea th:field="*{procedurePerformed}"id="ProcedimientoRealizado" ></textarea> 
+				<label for="observaciones" >Observaciones</label> 
+				<textarea th:field="*{observations}" id="observaciones" ></textarea> 
+				
+			
+				
+		
+				
+		
+				<label for="lugarRemision" >Lugar de remision</label> 
+				<input type="text" th:field="*{placeOfReferral}" id="lugarRemision" > 
+				
+			
+			<a href="#" th:href="@{/}"> Volver al menu </a>	
+			<button type="submit">Registrar Atencion</button>
+		</form>
+</body>
+</html>
