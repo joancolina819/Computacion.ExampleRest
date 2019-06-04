@@ -213,6 +213,8 @@ public class EnfermeriaServices implements IEnfermeriaServices {
 		newInvetario.setMedicine(m);
 		newInvetario.setQuantityAvailable(cantidad);
 		newInvetario.setExpirationDate(date);
+		newInvetario.setLocation("Cali");
+		
 		return newInvetario;
 	}
 

@@ -232,25 +232,6 @@ public class RestController {
 	public List<Siministro> obtenerSuministroPorFecha(@PathVariable String date){	
 		
 	
-		DateFormat  formatter =new  SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-		 Date d= null;
-			try {
-				d = formatter.parse(date);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-				d = new Date(2019,06,03);
-				System.out.println("AQUIIIIIIIIIIIIIIIIIIIII"+d);
-			}
-		
-			return IEnfermeriaServices.obtenerMedicamentoEntregadosPorFecha(d);
-	}
-	
-
-	
-	@PostMapping("agregarInventario/{cantidad}/{location}/{date}/{medicamento}")
-	public List<InvetarioMedicamento> guardarInventarioMedicamento(@PathVariable String cantidad,@PathVariable String location,@PathVariable String date, @PathVariable String  medicamento) {	
-		System.out.println("AQUIIIIII ERORRRRR");
 		String fechaTotal= date.toString();
 		int anio= Integer.parseInt(fechaTotal.substring(fechaTotal.length()-4, fechaTotal.length()));
 		String mes = fechaTotal.substring(4, 7);
@@ -296,7 +277,62 @@ public class RestController {
 		}
 		String newDate = anio+"-"+mess+"-"+dia;
 			Date nd = new Date(anio, mess, dia);
-		//System.out.println("FUNCIONAAAAAAAAAAAAAA"); 
+		
+		
+			return IEnfermeriaServices.obtenerMedicamentoEntregadosPorFecha(nd);
+	}
+	
+
+	
+	@PostMapping("agregarInventario/{cantidad}/{location}/{date}/{medicamento}")
+	public List<InvetarioMedicamento> guardarInventarioMedicamento(@PathVariable String cantidad,@PathVariable String location,@PathVariable String date, @PathVariable String  medicamento) {	
+		
+		String fechaTotal= date.toString();
+		int anio= Integer.parseInt(fechaTotal.substring(fechaTotal.length()-4, fechaTotal.length()));
+		String mes = fechaTotal.substring(4, 7);
+		int dia = Integer.parseInt(fechaTotal.substring(8,10));
+		int mess=0;
+		switch (mes) {
+		case "Jan":
+			mess= 01;
+			break;
+		case "Feb":
+			mess= 02;
+			break;
+		case "Mar":
+			mess= 03;
+			break;
+		case "Apr":
+			mess= 04;
+			break;
+		case "May":
+			mess= 05;
+			break;
+		case "Jun":
+			mess= 06;
+			break;
+		case "Jul":
+			mess= 07;
+			break;
+		case "Aug":
+			mess= 8;
+			break;
+		case "Sep":
+			mess= 9;
+			break;
+		case "Oct":
+			mess= 10;
+			break;
+		case "Nov":
+			mess= 11;
+			break;
+		case "Dec":
+			mess= 12;
+			break;
+		}
+		String newDate = anio+"-"+mess+"-"+dia;
+			Date nd = new Date(anio, mess, dia);
+		
 		Integer cantidadInt = Integer.parseInt(cantidad);
 		List<InvetarioMedicamento> respuesta = new ArrayList<InvetarioMedicamento>();
 		respuesta.add(IEnfermeriaServices.agreegarInventario(cantidadInt, location, nd, medicamento));
