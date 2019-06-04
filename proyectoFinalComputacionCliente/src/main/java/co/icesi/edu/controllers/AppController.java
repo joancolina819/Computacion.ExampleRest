@@ -181,6 +181,10 @@ public class AppController {
 		return "listarAtenciones";
 	}
 	
+	//----------------------------------------------------------------------------------------------------------------------
+	//AGREGAR INVENTARIOS
+	//----------------------------------------------------------------------------------------------------------------------
+
 	
 	@GetMapping("/gestionInventariosMedicamento")
 	public String getGestionInventario(Model model) {
@@ -197,6 +201,24 @@ public class AppController {
 		return "index";
 	}
 	
-	
-	
+
+	//----------------------------------------------------------------------------------------------------------------------
+	//LISTAR INVENTARIOS
+	//----------------------------------------------------------------------------------------------------------------------
+
+
+		@GetMapping("/gestionInventariosMedicamentoListar")
+		public String getGestionInventarioListar(Model model) {
+			
+			List<InvetarioMedicamento> inventarioMedicamento = new ArrayList<InvetarioMedicamento>();
+			model.addAttribute("listInventario", inventarioMedicamento );
+			return "gestionInventarioEdit";
+		}
+		
+//		@PostMapping("/gestionInventariosMedicamentoListar")
+//		public String getGestionInventarioListarPOST(@Valid InvetarioMedicamento inventarioMedicamento, BindingResult bindingResult, Model model) {
+//			System.out.println("ENTROoooooooooooooooo: "+inventarioMedicamento.getLocation());
+//			delegado.agregarInventarioMedicamento(""+inventarioMedicamento.getQuantityAvailable(), inventarioMedicamento.getLocation(), inventarioMedicamento.getExpirationDate(), inventarioMedicamento.getMedicine().getName());
+//			return "index";
+//		}
 }

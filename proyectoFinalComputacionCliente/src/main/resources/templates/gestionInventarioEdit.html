@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Listar Inventario medicamentos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Inventario</h1>
+			</div>
+		</div>
+		<div>
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Medicamento</th>
+							<th>Cantidad disponible</th>
+							<th>localización</th>
+							<th>Fecha expiración</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${listInventario.empty}">
+							<td colspan="2">No hay inventarios</td>
+						</tr>
+						<tr th:each="list : ${listInventario}">
+							<td><span th:text="${list.id}"> Id </span></td>
+							<td><span th:text="${list.medicine.name}"> Medicamento </span></td>
+							<td><span th:text="${list.quantityAvailable}">Cantidad disponible </span></td>
+							<td><span th:text="${list.location}"> localización</span></td>
+							<td><span th:text="${list.expirationDate}"> Fecha expiración </span></td>
+							
+							<td><a href="#" th:href="@{'/editUser/'+${list.id}}"> Edit </a></td>
+							<td><a href="#" th:href="@{'/delete/'+${list.id}}"> Delete </a></td>
+							
+						</tr>
+					</tbody>
+				</table>
+				<a href="#" th:href="@{/}"> volver al menu</a><br>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
