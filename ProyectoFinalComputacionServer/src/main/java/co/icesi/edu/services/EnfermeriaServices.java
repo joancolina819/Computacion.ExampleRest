@@ -206,6 +206,10 @@ public class EnfermeriaServices implements IEnfermeriaServices {
 		Medicamento m = new Medicamento();
 		m.setName(medicamento);
 		m.setGenericName(medicamento);
+		m.setAdministrationType("contraindicaciones");
+		m.setContraindications("tipo de administracion");
+		m.setLaboratory("Laboratorio");
+		m.setIndications("indicaciones");
 		newInvetario.setMedicine(m);
 		newInvetario.setQuantityAvailable(cantidad);
 		newInvetario.setExpirationDate(date);

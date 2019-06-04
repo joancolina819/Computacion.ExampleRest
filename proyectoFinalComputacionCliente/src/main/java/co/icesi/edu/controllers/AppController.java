@@ -194,12 +194,6 @@ public class AppController {
 		return "gestionInventarios";
 	}
 	
-	@PostMapping("/gestionInventariosMedicamentos")
-	public String getGestionInventarioPOST(@Valid InvetarioMedicamento inventarioMedicamento, BindingResult bindingResult, Model model) {
-		System.out.println("ENTROoooooooooooooooo: "+inventarioMedicamento.getLocation());
-		delegado.agregarInventarioMedicamento(""+inventarioMedicamento.getQuantityAvailable(), inventarioMedicamento.getLocation(), inventarioMedicamento.getExpirationDate(), inventarioMedicamento.getMedicine().getName());
-		return "index";
-	}
 	
 
 	//----------------------------------------------------------------------------------------------------------------------
@@ -213,6 +207,24 @@ public class AppController {
 			List<InvetarioMedicamento> inventarioMedicamento = new ArrayList<InvetarioMedicamento>();
 			model.addAttribute("listInventario", inventarioMedicamento );
 			return "gestionInventarioEdit";
+		}
+		
+
+		@PostMapping("/gestionInventariosMedicamentos")
+		public String getGestionInventarioPOST(@Valid InvetarioMedicamento inventarioMedicamento, BindingResult bindingResult, Model model) {
+			System.out.println("ENTROoooooooooooooooo: "+inventarioMedicamento.getLocation());
+			inventarioMedicamento.setExpirationDate(new Date());
+			Medicamento m = new Medicamento();
+			m.setAdministrationType("tipo Administracion");
+			m.setGenericName("acetaminofen");
+			m.setName("ACETAMINOFEN");
+			m.setContraindications("Contraindicaciones");
+			m.setIndications("indicaciones");
+			m.setLaboratory("laboratorio");
+			m.setSupplies(new ArrayList<Siministro>());
+			inventarioMedicamento.setMedicine(m);
+			delegado.agregarInventarioMedicamento(""+inventarioMedicamento.getQuantityAvailable(), inventarioMedicamento.getLocation(), inventarioMedicamento.getExpirationDate(), inventarioMedicamento.getMedicine().getName());
+			return "index";
 		}
 		
 //		@PostMapping("/gestionInventariosMedicamentoListar")
